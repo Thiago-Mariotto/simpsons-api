@@ -1,0 +1,28 @@
+# 2 containers
+# 1 - api - 2 db
+
+version: '3'
+
+services:
+  api:
+    build: .
+    container_name: turma23-api
+    tty: true
+    command: sh
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - 3001:3001
+    env_file:
+      - .env
+
+  database:
+    container_name: turma23-database
+    ports:
+      - 3306:3306
+    image: mysql:8.0.32
+    env_file:
+      - .env
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
