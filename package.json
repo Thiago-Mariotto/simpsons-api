@@ -4,7 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "rm -rf ./dist",
+    "build": "tsc",
+		"postbuild": "cp ./src/database/*.sql ./dist/src/database/ && npm run create-views",
+    "test": "jest tests --runInBand",
+    "test:unit": "jest tests/unit",
+    "test:integration": "jest tests/integration --runInBand",
+    "lint": "eslint . --ext .ts",
+    "dev": "ts-node-dev src/server.ts",
+    "prestart": "npm run build",
+    "start": "node dist/src/server.js"
   },
   "keywords": [],
   "author": "",
