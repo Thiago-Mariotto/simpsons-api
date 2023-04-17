@@ -9,7 +9,8 @@ const conn = mysql.createPool({
 
 if (['dev', 'development'].includes(process.env.NODE_ENV || 'development')) {
   const dropDatabase = readQueries('dropDatabase.sql');
-  executeQueries(conn, dropDatabase).then(() => executeQueries(conn));
+  const createDatabase = readQueries('createDatabase.sql');
+  executeQueries(conn, dropDatabase).then(() => executeQueries(conn, createDatabase));
 }
 
 export default conn;
