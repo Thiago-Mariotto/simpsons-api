@@ -13,7 +13,6 @@ export async function create(req: Request, res: Response, next: NextFunction) {
     await characterService.create({ name });
     return res.status(201).send('Created');
   } catch (err) {
-    console.log('Erro ao cadastrar character', err);
     next(err);
   }
 }
