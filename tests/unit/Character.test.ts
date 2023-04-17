@@ -1,6 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import Character from '../../src/interfaces/ICharacter';
-import { MemoryModel } from '../../src/models/memoryModel';
+import { MemoryModel } from '../../src/models/MemoryModel';
 import CharacterService from '../../src/services/Character';
 
 let memoryModel: MemoryModel<Character>;
@@ -32,7 +32,7 @@ describe('Character', () => {
           })
         ).rejects.toHaveProperty(
           'message',
-          'O nome precisa ter pelo menos 3 caracteres'
+          'O nome do character precisa ter no minimo 3 caracteres'
         );
       }
     );

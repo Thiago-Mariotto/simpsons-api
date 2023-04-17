@@ -11,8 +11,8 @@ export class CastService extends Service<Cast> {
   }
 
   async create(obj: Cast): Promise<void> {
-    if (obj.name.length <= this.MIN_LENGTH) {
-      throw new BadRequest('O nome precisa ter pelo menos 4 caracteres');
+    if (obj.name.length < this.MIN_LENGTH) {
+      throw new BadRequest('O nome precisa ter pelo menos 3 caracteres');
     }
     return super.create(obj);
   }

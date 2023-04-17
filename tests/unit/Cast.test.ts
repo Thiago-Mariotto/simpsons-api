@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import Cast from '../../src/interfaces/ICast';
-import { SimpleMemoryModel } from '../../src/models/memoryModel';
-import { CastService } from '../../src/services/cast';
+import { SimpleMemoryModel } from '../../src/models/MemoryModel';
+import { CastService } from '../../src/services/Cast';
 
 let memoryModel: SimpleMemoryModel<Cast>;
 let castService: CastService;
@@ -18,7 +18,7 @@ describe('Cast', () => {
         name: 'zambs'
       });
 
-      const expected = { name: 'John' };
+      const expected = { name: 'zambs' };
       expect(await castService.list()).toEqual(
         expect.arrayContaining([expect.objectContaining(expected)])
       );
@@ -28,7 +28,7 @@ describe('Cast', () => {
       'deve gerar um erro ao tentar criar um novo cast com nome inválido',
       async () => {
         await expect(
-          async () => await castService.create({ name: 'Adm' })
+          async () => await castService.create({ name: 'Ad' })
         ).rejects.toHaveProperty(
           'message',
           'O nome precisa ter pelo menos 3 caracteres'
@@ -43,7 +43,7 @@ describe('Cast', () => {
         name: 'zambs'
       });
 
-      const expected = { name: 'John' };
+      const expected = { name: 'zambs' };
       expect(await castService.find(0)).toEqual(
         expect.objectContaining(expected)
       );

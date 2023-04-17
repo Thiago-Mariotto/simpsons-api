@@ -1,7 +1,21 @@
+/* eslint-disable max-lines-per-function */
 import supertest from 'supertest';
 import App from '../../src/App';
+import connection from '../../src/database/Connection';
+import { executeQueries, readQueries } from '../../src/database/queryUtils';
+const dropQuery = readQueries('dropDatabase.sql');
+
 
 describe('## POST /characters', function () {
+  beforeEach(async () => {
+    await executeQueries(connection, dropQuery);
+    await executeQueries(connection);
+  });
+  afterAll(async () => {
+    await executeQueries(connection, dropQuery);
+    await connection.end();
+  });
+
   test('Deve criar um novo character', async function () {
     const response = await supertest(App)
       .post('/characters')

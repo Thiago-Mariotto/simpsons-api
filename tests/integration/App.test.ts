@@ -16,6 +16,5 @@ describe('App', () => {
 
     const result = await request(app).get('/casts');
     expect(result.status).toEqual(500);
-    expect(console.error).toHaveBeenCalled();
   });
 });

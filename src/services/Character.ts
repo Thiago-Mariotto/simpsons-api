@@ -11,7 +11,7 @@ export default class CharacterService extends Service<ICharacter> {
   }
 
   async create(data: ICharacter): Promise<void> {
-    if (data.name.length <= this.MIN_LENGTH)
+    if (data.name.length < this.MIN_LENGTH)
       throw new BadRequest('O nome do character precisa ter no minimo 3 caracteres');
     super.create(data);
   }
