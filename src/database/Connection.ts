@@ -1,10 +1,15 @@
 import mysql from 'mysql2/promise';
-
+import { executeQueries, readQueries } from './queryUtils';
 const conn = mysql.createPool({
   host: process.env.MYSQLHOST,
   user: process.env.MYSQLUSER,
   password: process.env.MYSQLPASSWORD,
   port: Number(process.env.MYSQLPORT || 3306),
 });
+
+if (['dev', 'development'].includes(process.env.NODE_ENV || 'development')) {
+  const dropDatabase = readQueries('dropDatabase.sql');
+  executeQueries(conn, dropDatabase).then(() => executeQueries(conn));
+}
 
 export default conn;
