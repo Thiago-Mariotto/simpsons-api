@@ -7,7 +7,7 @@ export default class CharacterModel implements SimpleModel<ICharacter> {
   constructor(private conn = connection) { }
 
   async create(obj: ICharacter): Promise<void> {
-    await this.conn.execute('INSERT INTO cartoon.Characters (name) VALUES (?)', [obj.name]);
+    await this.conn.execute('INSERT Characters (name) VALUES (?);', [obj.name]);
   }
 
   async list(): Promise<ICharacter[]> {

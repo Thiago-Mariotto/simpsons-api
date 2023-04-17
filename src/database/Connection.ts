@@ -5,6 +5,7 @@ const conn = mysql.createPool({
   user: process.env.MYSQLUSER,
   password: process.env.MYSQLPASSWORD,
   port: Number(process.env.MYSQLPORT || 3306),
+  database: 'cartoon'
 });
 
 if (['dev', 'development'].includes(process.env.NODE_ENV || 'development')) {
